@@ -19,7 +19,7 @@
 
 `$ git diff readme.txt`       //查看修改内容
 
-`$ git log`                   //查看提交日志
+`$ git log`                   //查看提交日志，按q可退出
 
 `$ git reset -- commit_id`    //将版本库的回退到commit_id代表的版本，HEAD为当前版本，HEAD~是上一个版本，HEAD~~是上上个版本
 
@@ -35,7 +35,8 @@
 
 `$ ssh-keygen -t rsa -C 'youremail@example.com' -f ~/.ssh/github_id_rsa`  //在ssh目录下创建名为github_id_rsa的公钥
 
-`$ git remote add origin git@github.com:heyfall/pengyanlin.git`  //将本地仓库
+`$ git remote add origin git@github.com:heyfall/pengyanlin.git`  //将本地仓库推送到github
+`$ git remote set-url origin git@github.com:heyfall/learn.git`   //更新远程仓库的url
 
 `$ touch ~/.ssh/config`       //在ssh目录下新建config文件
 
