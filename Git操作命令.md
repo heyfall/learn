@@ -31,6 +31,10 @@
 
 `$ git rm <file>`             //从版本库中删除文件
 
+`$ git remote -v`             //查看版本库信息
+
+`$ git remote rm origin`      //删除版本库，这里的删除其实是解除了本地和远程的绑定关系，并不是物理上删除了远程库
+
 `$ ssh-keygen -t rsa -C 'youremail@example.com'`   //创建ssh key
 
 `$ ssh-keygen -t rsa -C 'youremail@example.com' -f ~/.ssh/github_id_rsa`  //在ssh目录下创建名为github_id_rsa的公钥
