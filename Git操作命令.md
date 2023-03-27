@@ -63,7 +63,7 @@ windows下host默认地址： C:\Windows\System32\drivers\etc
 
 `$ git diff --HEAD`           //查看工作区和仓库的差异
 
-`$ git diff <file>`       //查看工作区和暂存区readme文件的差异
+`$ git diff <file>`          //查看工作区和暂存区readme文件的差异
 
 `$ git log`                   //查看提交日志，按q可退出
 
