@@ -140,3 +140,5 @@ Git创建分支实际上是增加一个区别于master的指针，比如dev，�
 `$ git stash drop`                        //删除保存的工作现场
 
 `$ git stash pop`                         //恢复并删除保存的工作现场
+
+`$ git cherry-pick <commit_id>`           //复制一个特定的提交到当前分支，比如在master分支修复的bug，想要合并到当前dev分支，可以用这个命令将bug修改的提交复制到当前分支
