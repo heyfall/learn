@@ -63,7 +63,7 @@ windows下host默认地址： C:\Windows\System32\drivers\etc
 
 `$ git diff --HEAD`           //查看工作区和仓库的差异
 
-`$ git diff <file>`       //查看工作区和暂存区readme文件的差异
+`$ git diff <file>`          //查看工作区和暂存区readme文件的差异
 
 `$ git log`                   //查看提交日志，按q可退出
 
@@ -102,6 +102,18 @@ windows下host默认地址： C:\Windows\System32\drivers\etc
 `$ ssh -T git@github.com`     //测试是否能够连接github
 
 `$ git clone <ssh url / https orl>`  //克隆一个远程库到本地
+
+### 分支管理
+
+Git创建分支实际上是增加一个区别于master的指针，比如dev，改变HEAD的指向，将其从指向master改为指向dev，工作区的内容没有任何变化；合并分支最简单的方法就是把master指向dev的当前提交；删除分支实际上就是将dev指针删掉。
+
+`$ git branch dev`             //创建一个名为dev的分支
+
+`$ git checkout dev`           //切换到dev分支
+
+`$ git checkout -b dev`        //创建dev并切换到dev分支
+
+`$ git branch`                 //查看当前分支
 
 
 
