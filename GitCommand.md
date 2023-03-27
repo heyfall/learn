@@ -115,7 +115,7 @@ Git创建分支实际上是增加一个区别于master的指针，比如dev，�
 
 `$ git branch`                 //查看当前分支
 
-
+`$ git merge dev`              //将dev分支合并到当前分支
 
 
 
