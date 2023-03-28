@@ -123,6 +123,8 @@ Git创建分支实际上是增加一个区别于master的指针，比如dev，�
 
 `$ git branch -d dev`          //删除dev分支
 
+`$ git branch -D dev`          //强行删除一个未被合并的分支
+
 需要注意的是，如果在A分支下有未完成的工作，切换到B分支的时候，会把在A分支下的工作带过去，如果此时提交，在A分支下的修改会算作B分支的工作；所以可以在跳转分支前git status一下查看是否有没有add和commit的工作，或者使用git stash进行现场保留。
 
 当Git无法自动合并分支时，就必须首先解决冲突。解决冲突后，再提交，合并完成；解决冲突就是把Git合并失败的文件手动编辑为我们希望的内容，再提交。
@@ -135,10 +137,15 @@ Git创建分支实际上是增加一个区别于master的指针，比如dev，�
 
 `$ git stash list`                        //查看保存的工作现场
 
-`$ git stash apply stash@{0}`             //恢复保存的工作现场，但是恢复后，stash内容并不删除
+`$ git stash apply stash@{0}`             //恢复保存的工ne作现场，但是恢复后，stash内容并不删除
 
 `$ git stash drop`                        //删除保存的工作现场
 
 `$ git stash pop`                         //恢复并删除保存的工作现场
 
 `$ git cherry-pick <commit_id>`           //复制一个特定的提交到当前分支，比如在master分支修复的bug，想要合并到当前dev分支，可以用这个命令将bug修改的提交复制到当前分支
+
+`$ git pull`                              //拉取最新代码；如果提示no tracking information，说明本地分支和远程分支的链接关系没有创建
+
+`$ git branch --set-upstream-to <branch-name> origin/<branch-name>`   //创建本地分支和远程分支的链接关系
+
