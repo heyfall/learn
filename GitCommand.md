@@ -149,5 +149,6 @@ Git创建分支实际上是增加一个区别于master的指针，比如dev，�
 
 `$ git pull`                              //拉取最新代码；如果提示no tracking information，说明本地分支和远程分支的链接关系没有创建
 
-`$ git branch --set-upstream-to <branch-name> origin/<branch-name>`   //创建本地分支和远程分支的链接关系
+`$ git branch --set-upstream-to=origin/<branch_name> <branch_name>`   //创建本地分支和远程分支的链接关系，如果只是git switch -c dev再git push origin dev，并没有建立本地分支与远程分支的链接关系
 
+`$ git switch -c <branch_name> origin/<branch_name>`  //非分支创建者用来在本地创建一个分支，并与远程库中的该分支关联
