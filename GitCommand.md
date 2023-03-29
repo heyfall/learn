@@ -1,4 +1,4 @@
-### 常见linux bash命令
+## 常见linux bash命令
 
 `$ mkdir learngit`            //创建空目录
 
@@ -14,7 +14,7 @@
 
 `$ cat <file>`                //查看文件内容
 
-### 安装git
+## 安装git
 
 `$ git config --global user.name "yourname"`       //设置用户名
 
@@ -45,7 +45,7 @@ IdentityFile ~/.ssh/id_rsa
 如果还是不能连接，首先到ipaddress 输入 github.com 查找到其IP地址，将查到的IP地址和网址映射放到你的本地 hosts 文件中即可，例子：140.82.112.4 github.com
 windows下host默认地址： C:\Windows\System32\drivers\etc
 
-### 创建版本库
+## 创建版本库
 
 `$ git init`                  //将当前所在目录变成git可以管理的仓库
 
@@ -53,7 +53,7 @@ windows下host默认地址： C:\Windows\System32\drivers\etc
 
 `$ git commit -m "wrote a readme file"` //git commit是将文件提交到仓库，-m后面输入的是本次提交的说明
 
-### 状态查看
+## 状态查看
 
 `$ git status`                //查看当前仓库状态
 
@@ -69,7 +69,7 @@ windows下host默认地址： C:\Windows\System32\drivers\etc
 
 `$ git reflog`                //查看命令历史，以便确定回到哪个版本
 
-### 修改和删除
+## 修改和删除文件
 
 `$ git reset -- commit_id`    //将版本库的回退到commit_id代表的版本，HEAD为当前版本，HEAD^是上一个版本，HEAD^^是上上个版本
 
@@ -85,7 +85,7 @@ windows下host默认地址： C:\Windows\System32\drivers\etc
 
 `$ git rm <file>`             //删除文件，并将删文件的修改提交到暂存区
 
-### 远程仓库
+## 远程仓库
 
 `$ git remote -v`             //查看版本库信息
 
@@ -103,9 +103,11 @@ windows下host默认地址： C:\Windows\System32\drivers\etc
 
 `$ git clone <ssh url / https orl>`  //克隆一个远程库到本地
 
-### 分支管理
+## 分支管理
 
 Git创建分支实际上是增加一个区别于master的指针，比如dev，改变HEAD的指向，将其从指向master改为指向dev，工作区的内容没有任何变化；合并分支最简单的方法就是把master指向dev的当前提交；删除分支实际上就是将dev指针删掉。
+
+### 创建、合并、删除分支
 
 `$ git branch dev`             //创建一个名为dev的分支
 
@@ -125,8 +127,6 @@ Git创建分支实际上是增加一个区别于master的指针，比如dev，�
 
 `$ git branch -D dev`          //强行删除一个未被合并的分支
 
-`$ git push origin -d <branch_name>`   //删除一个远程分支
-
 需要注意的是，如果在A分支下有未完成的工作，切换到B分支的时候，会把在A分支下的工作带过去，如果此时提交，在A分支下的修改会算作B分支的工作；所以可以在跳转分支前git status一下查看是否有没有add和commit的工作，或者使用git stash进行现场保留。
 
 当Git无法自动合并分支时，就必须首先解决冲突。解决冲突后，再提交，合并完成；解决冲突就是把Git合并失败的文件手动编辑为我们希望的内容，再提交。
@@ -134,6 +134,10 @@ Git创建分支实际上是增加一个区别于master的指针，比如dev，�
 `git merge --no-ff dev`         //使用普通模式合并分支，合并后能看出来做过合并，不加这个参数则是fast forward合并，看不出来曾经做过合并
 
 这里的--no--ff 模式其实就是相当于master指针new了一个跟dev指针一样的空间并且放了相同的内容然后指向这个空间。而原来的快速模式，就是简单将master指针指向dev指针指向的内容而已，并没有自己创造空间。
+
+### 保存工作现场
+
+如果需要切换分支，但是正在本分支进行的工作无法提交，可以使用保存现场命令将当前的工作现场储藏起来，等以后恢复现场后继续工作
 
 `$ git stash`                             //保存工作现场
 
@@ -147,8 +151,15 @@ Git创建分支实际上是增加一个区别于master的指针，比如dev，�
 
 `$ git cherry-pick <commit_id>`           //复制一个特定的提交到当前分支，比如在master分支修复的bug，想要合并到当前dev分支，可以用这个命令将bug修改的提交复制到当前分支
 
+### 远程分支
+
 `$ git pull`                              //拉取最新代码；如果提示no tracking information，说明本地分支和远程分支的链接关系没有创建
 
-`$ git branch --set-upstream-to=origin/<branch_name> <branch_name>`   //创建本地分支和远程分支的链接关系，如果只是git switch -c dev再git push origin dev，并没有建立本地分支与远程分支的链接关系
+`$ git push origin -d <branch_name>`   //删除一个远程分支
 
-`$ git switch -c <branch_name> origin/<branch_name>`  //非分支创建者用来在本地创建一个分支，并与远程库中的该分支关联
+`$ git branch --set-upstream-to=origin/<branch_name> <branch_name>`   //创建本地分支和远程分支的链接关系，如果本地只是`git switch -c dev`再`git push origin dev`，并没有建立本地分支与远程分支的链接关系，只有通过`git push -u origin dev`来推送才建立了本地分支与远程分支的连接关系
+
+`$ git switch -c <branch_name> origin/<branch_name>`  //非分支创建者用来在本地创建一个分支，并与远程库中的该分支关联，或者先创建一个分支，再用`git branch --set-upstream-to =origin/<branch_name>`来进行关联
+
+### Rebase操作
+
