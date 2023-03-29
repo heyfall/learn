@@ -155,11 +155,35 @@ Git创建分支实际上是增加一个区别于master的指针，比如dev，�
 
 `$ git pull`                              //拉取最新代码；如果提示no tracking information，说明本地分支和远程分支的链接关系没有创建
 
-`$ git push origin -d <branch_name>`   //删除一个远程分支
+`$ git push origin -d <branch_name>`     //删除一个远程分支
 
 `$ git branch --set-upstream-to=origin/<branch_name> <branch_name>`   //创建本地分支和远程分支的链接关系，如果本地只是`git switch -c dev`再`git push origin dev`，并没有建立本地分支与远程分支的链接关系，只有通过`git push -u origin dev`来推送才建立了本地分支与远程分支的连接关系
 
 `$ git switch -c <branch_name> origin/<branch_name>`  //非分支创建者用来在本地创建一个分支，并与远程库中的该分支关联，或者先创建一个分支，再用`git branch --set-upstream-to =origin/<branch_name>`来进行关联
 
 ### Rebase操作
+
+`$ git rebase`                         // 变基
+
+当同步远程代码`git push`产生冲突，说明有人先一步push了代码导致本地代码与远程最新代码不一致，这时需要先`git pull`拉取代码，`git pull`会将远程的代码与本地代码进行merge，会产生merge的记录，`git pull --rebase`会将你的提交放在远程拉取的提交之后，即变基。
+
+关于merge与rebase的区别，可以查看这篇文章 ：[git merge与 git rebase的区别](https://blog.csdn.net/michaelshare/article/details/79108233)
+
+## 标签管理
+
+发布一个版本时，我们通常先在版本库中打一个标签（tag），这样，就唯一确定了打标签时刻的版本。将来无论什么时候，取某个标签的版本，就是把那个打标签的时刻的历史版本取出来。所以，标签也是版本库的一个快照。
+
+Git的标签虽然是版本库的快照，但其实它就是指向某个commit的指针，所以创建和删除标签都是瞬间完成的。
+
+`$ git tag <tag_name>`                  // 默认标签是打在当前分支的最新commit上
+
+`$ git tag <tag_name> <commit_id>`      // 将标签打在对应commit_id上，commit_id可以通过log查看
+
+`$ git tag`                             // 查看标签，标签是按照字母排序的
+
+`$ git show <tag_name>`                 // 查看标签具体信息
+
+`$ git tag -a <tag_name> -m <comment>`  // 创建带说明的标签，-a指定标签名，-m指定说明文字
+
+注意，标签总是与某个commit挂钩，如果这个commit既出现在master分支又出现在dev分支，那么在这两个分支上都可以看到这个标签
 
