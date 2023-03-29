@@ -175,6 +175,8 @@ Git创建分支实际上是增加一个区别于master的指针，比如dev，�
 
 Git的标签虽然是版本库的快照，但其实它就是指向某个commit的指针，所以创建和删除标签都是瞬间完成的。
 
+### 创建标签
+
 `$ git tag <tag_name>`                  // 默认标签是打在当前分支的最新commit上
 
 `$ git tag <tag_name> <commit_id>`      // 将标签打在对应commit_id上，commit_id可以通过log查看
@@ -187,3 +189,14 @@ Git的标签虽然是版本库的快照，但其实它就是指向某个commit�
 
 注意，标签总是与某个commit挂钩，如果这个commit既出现在master分支又出现在dev分支，那么在这两个分支上都可以看到这个标签
 
+### 操作标签
+
+`$ git tag -d <tag_name>`               // 删除标签
+
+`$ git push origin <tag_name>`          // 把标签推送到远程
+
+`$ git push origin --tags`              // 把所有标签推送到远程
+
+`$ git push origin :refs/tags/<tag_name>`    // 删除远程库中的标签（先删除本地的标签比较好），这里的意思是将冒号前面的空值推送到远程标签名，等于是删除
+
+`$ git push origin -d <tag_name>`       // 删除远程标签，如果标签名与分支名相同会报错，可以用`$ git push origin -d tag <tag_name>`代替
